@@ -27,5 +27,6 @@ public class Main extends JavaPlugin {
 
         getCommand("start").setExecutor(new StartCommand());
         getCommand("broadcast").setExecutor(new BroadcastCommand());
+        getCommand("stopa").setExecutor(new StopaCommand());
     }
 }

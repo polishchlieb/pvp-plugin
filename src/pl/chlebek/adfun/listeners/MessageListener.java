@@ -17,7 +17,7 @@ public class MessageListener implements Listener {
     @EventHandler
     public void onCommand(PlayerCommandPreprocessEvent e) {
         if (!e.getPlayer().isOp()) {
-            e.getPlayer().sendMessage("cicho bońć");
+            e.getPlayer().sendMessage("cicho bonc");
             e.setCancelled(true);
         }
     }

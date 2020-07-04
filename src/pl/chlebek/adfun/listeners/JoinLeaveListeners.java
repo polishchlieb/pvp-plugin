@@ -34,8 +34,10 @@ public class JoinLeaveListeners implements Listener {
     @EventHandler
     public void onPreLogin(AsyncPlayerPreLoginEvent e) {
         for (Player p : Main.getInstance().getServer().getOnlinePlayers()) {
-            if (p.getName().equals(e.getName()))
+            if (p.getName().equals(e.getName())) {
                 e.disallow(AsyncPlayerPreLoginEvent.Result.KICK_OTHER, "ic stont");
+                break;
+            }
         }
     }
 

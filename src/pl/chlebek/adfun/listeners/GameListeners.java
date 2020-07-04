@@ -25,7 +25,7 @@ public class GameListeners implements Listener {
         Main.broadcast("§e" + e.getPlayer().getName() + " §ropuscil rozgrywke. Zwycieza §e" + Battle.getOne() + "§r. Gratulacje!");
         Battle.stop();
 
-        e.getPlayer().setHealth(0);
+        e.getPlayer().setHealth(0); // kill
     }
 
     @EventHandler

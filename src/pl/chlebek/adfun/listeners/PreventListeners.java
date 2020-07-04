@@ -10,19 +10,16 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.hanging.HangingBreakByEntityEvent;
 import org.bukkit.event.player.PlayerArmorStandManipulateEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
-import pl.chlebek.adfun.Main;
 
 public class PreventListeners implements Listener {
     @EventHandler
     public void onBlockBreak(BlockBreakEvent e) {
-        Main.getInstance().getLogger().info("block break");
         if (!e.getPlayer().isOp())
             e.setCancelled(true);
     }
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEntityEvent e) {
-        Main.getInstance().getLogger().info("player interact");
         if (e.getPlayer().isOp())
             return;
         if (e.getRightClicked() instanceof ArmorStand || e.getRightClicked() instanceof ItemFrame)
@@ -31,7 +28,6 @@ public class PreventListeners implements Listener {
 
     @EventHandler
     public void onArmorStandManipulate(PlayerArmorStandManipulateEvent e) {
-        Main.getInstance().getLogger().info("armor stand manipulate");
         if (!e.getPlayer().isOp())
             e.setCancelled(true);
     }
@@ -46,7 +42,6 @@ public class PreventListeners implements Listener {
 
     @EventHandler
     public void onItemFrameBreak(HangingBreakByEntityEvent e) {
-        Main.getInstance().getLogger().info("hanging break by entity");
         if (e.getEntity() instanceof ItemFrame && e.getRemover() instanceof Player && !e.getRemover().isOp())
             e.setCancelled(true);
     }

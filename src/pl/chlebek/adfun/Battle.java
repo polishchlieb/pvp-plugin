@@ -1,7 +1,9 @@
 package pl.chlebek.adfun;
 
 import org.bukkit.Location;
+import org.bukkit.entity.Firework;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,18 +26,28 @@ public class Battle {
     }
 
     public static void stop() {
-        Location spawn = Main.getInstance().getServer().getWorlds().get(0).getSpawnLocation();
         Player winner = Main.getInstance().getServer().getPlayer(getOne());
-
-        winner.getEquipment().setHelmet(null);
-        winner.getEquipment().setChestplate(null);
-        winner.getEquipment().setLeggings(null);
-        winner.getEquipment().setBoots(null);
-        winner.getInventory().clear();
-
-        winner.setHealth(20);
-        winner.teleport(spawn);
+        resetPlayer(winner);
+        winner.getWorld().spawn(winner.getLocation(), Firework.class);
 
         Battle.current.clear();
+    }
+
+    public static void resetPlayer(Player p) {
+        p.getEquipment().setHelmet(null);
+        p.getEquipment().setChestplate(null);
+        p.getEquipment().setLeggings(null);
+        p.getEquipment().setBoots(null);
+        p.getEquipment().clear();
+
+        p.setHealth(20);
+
+        Location spawn = Main.getInstance().getServer().getWorlds().get(0).getSpawnLocation();
+        new BukkitRunnable() {
+            @Override
+            public void run() {
+                p.teleport(spawn);
+            }
+        }.runTaskLater(Main.getInstance(), 60);
     }
 }

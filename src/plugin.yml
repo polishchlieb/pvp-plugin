@@ -6,3 +6,4 @@ commands:
   start:
   broadcast:
     aliases: ["bc"]
+  stopa:
